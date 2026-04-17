@@ -92,7 +92,7 @@ section h2 {
 
 .promo-card {
   background: var(--card);
-  padding: 50px 40px;
+  padding: 40px 40px;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   text-align: center;
@@ -277,58 +277,12 @@ section h2 {
   }
 }
 
-/* ======== MOBILE FIRST OPTIMIZATION ========= */
-/* Tablet */
-/* @media (max-width: 1024px) {
+/* ===================================================== */
+/* ================= 320px (BASE MOBILE) =============== */
+@media (min-width: 320px) {
 
   .hero {
-    padding: 80px 0;
-  }
-
-  .hero h1 {
-    font-size: 30px;
-    line-height: 1.3;
-  }
-
-  .hero p {
-    font-size: 16px;
-  }
-
-  section h2 {
-    font-size: 28px;
-    margin-bottom: 40px;
-  }
-
-  .promo-card {
-    padding: 40px 28px;
-  }
-
-  .price-new {
-    font-size: 28px;
-  }
-} */
-
-/* Mobile */
-/* @media (max-width: 768px) {
-  .container {
-    padding: 0 18px;
-  }
-
-  .nav {
-    height: 64px;
-  }
-
-  .logo img {
-    height: 34px;
-  }
-
-  .nav-right {
-    gap: 10px;
-  }
-
-  .hero {
-    padding: 70px 0;
-    text-align: center;
+    padding: 80px 16px;
   }
 
   .hero h1 {
@@ -336,98 +290,101 @@ section h2 {
   }
 
   .hero p {
-    font-size: 15px;
-  }
-
-  .hero-actions {
-    justify-content: center;
+    font-size: 14px;
   }
 
   .btn-primary,
   .btn-outline {
     width: 100%;
     text-align: center;
-  } */
-
-  /* TRUST */
-  /* .trust-grid {
-    gap: 16px;
-    font-size: 14px;
-  } */
-
-  /* PROMO */
-  /* .promo-grid {
-    gap: 24px;
+    padding: 14px;
   }
 
   .promo-card {
-    padding: 36px 22px;
+    padding: 24px;
   }
 
-  .promo-card h3 {
-    font-size: 18px;
-  }
-
-  .price-new {
+  section h2 {
     font-size: 24px;
-  } */
-
-  /* CTA */
-  /* .cta {
-    padding: 60px 18px;
+    margin-bottom: 30px;
   }
 
-  .cta h2 {
-    font-size: 22px;
-  }
+}
 
-  .cta p {
-    font-size: 14px;
-  } */
 
-  /* THANK YOU MODAL */
-  /* .thank-card {
-    margin: 0 16px;
-    padding: 30px 22px;
-  }
+/* ================= 360px ============================== */
+@media (min-width: 360px) {
 
-  .thank-card h2 {
-    font-size: 18px;
-  }
-
-} */
-
-/* Extra small phones */
-/* @media (max-width: 420px) {
   .hero h1 {
-    font-size: 22px;
+    font-size: 28px;
   }
 
   .hero p {
-    font-size: 14px;
+    font-size: 15px;
   }
 
-  .price-new {
-    font-size: 22px;
-  }
-
-  .promo-card ul li {
-    font-size: 13px;
-  }
-} */
-
-/* @media (max-width: 380px) {
-  .notification-dropdown {
-    width: 280px;
-  }
 }
 
-@media (max-width: 900px) {
-  .hero h1 {
-    font-size: 32px;
+/* ================= 768px (TABLET) ===================== */
+@media (min-width: 768px) {
+
+  .hero {
+    padding: 100px 0;
   }
 
-  .promo-card.best {
-    transform: none;
+  .hero h1 {
+    font-size: 34px;
   }
-} */
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  .hero-actions {
+    flex-direction: row;
+  }
+
+  .btn-primary,
+  .btn-outline {
+    width: auto;
+  }
+
+  .promo-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  section h2 {
+    font-size: 30px;
+  }
+
+}
+
+/* ================= 1024px (LAPTOP) ==================== */
+@media (min-width: 1024px) {
+
+  .container {
+    max-width: 960px;
+  }
+
+  .hero h1 {
+    font-size: 40px;
+  }
+
+  .promo-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+}
+
+/* ================= 1400px (DESKTOP XL) ================ */
+@media (min-width: 1400px) {
+
+  .container {
+    max-width: 1200px;
+  }
+
+  .hero h1 {
+    font-size: 46px;
+  }
+
+}

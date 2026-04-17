@@ -11,7 +11,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  padding-top: 72px; 
+  padding-top: 72px;
 }
 
 a {
@@ -143,7 +143,8 @@ header {
 .nav-right {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
+  flex-shrink: 0;
 }
 
 /* ICON BUTTON */
@@ -168,25 +169,36 @@ header {
 /* SEARCH */
 .search-wrapper {
   position: relative;
+  flex: 1;
+  max-width: 260px;
 }
 
-#searchInput {
-  position: absolute;
-  right: 50px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 200px;
-  padding: 8px 14px;
+.search-wrapper input {
+  width: 100%;
+  height: 40px;
+  padding: 0 16px 0 40px;
   border-radius: 999px;
   border: 1.5px solid #e5e7eb;
+  background: #f3f4f6;
   font-size: 14px;
   outline: none;
-  display: none;
-  background: #fff;
+  transition: all 0.2s ease;
 }
 
-#searchInput.show {
-  display: block;
+.search-wrapper input:focus {
+  background: #fff;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* ไอคอน */
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #9ca3af;
 }
 
 /* NOTIFICATION */
@@ -340,4 +352,172 @@ footer {
   text-align: center;
   padding: 26px;
   font-size: 13px;
+}
+
+/* ===================================================== */
+/* ================= 320px (BASE MOBILE) =============== */
+
+/* CONTAINER */
+.container {
+  padding: 0 16px;
+}
+
+/* HEADER HEIGHT */
+.nav {
+  height: 64px;
+}
+
+body {
+  padding-top: 64px;
+}
+
+/* LOGO */
+.logo img {
+  height: 36px;
+}
+
+/* NAV RIGHT */
+.nav-right {
+  gap: 8px;
+}
+
+/* SEARCH */
+.search-wrapper input {
+  width: 0;
+  opacity: 0;
+  padding: 0;
+  border: none;
+}
+
+.search-wrapper {
+  width: 36px;
+  height: 36px;
+}
+
+.search-icon {
+  position: static;
+  transform: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ICON */
+.icon-btn {
+  width: 36px;
+  height: 36px;
+  font-size: 18px;
+}
+
+/* PROFILE MENU */
+.profile-menu {
+  width: 200px;
+}
+
+/* NOTIFICATION */
+.notification-dropdown {
+  width: 92vw;
+  right: -10px;
+}
+
+/* TYPOGRAPHY */
+h1 {
+  font-size: 22px;
+}
+
+/* ================= 360px ============================== */
+@media (min-width: 360px) {
+
+  .logo img {
+    height: 38px;
+  }
+
+  .icon-btn {
+    width: 38px;
+    height: 38px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+}
+
+/* ================= 768px (TABLET) ===================== */
+@media (min-width: 768px) {
+
+  .container {
+    padding: 0 20px;
+  }
+
+  .nav {
+    height: 72px;
+  }
+
+  body {
+    padding-top: 72px;
+  }
+
+  /* SEARCH */
+  .search-wrapper input {
+    width: 180px;
+    opacity: 1;
+    padding: 0 16px 0 40px;
+    border: 1.5px solid #e5e7eb;
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .nav-right {
+    gap: 12px;
+  }
+
+  .notification-dropdown {
+    width: 320px;
+    right: 0;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+}
+
+/* ================= 1024px (LAPTOP) ==================== */
+@media (min-width: 1024px) {
+
+  .container {
+    max-width: 1100px;
+  }
+
+  .search-wrapper input {
+    width: 220px;
+  }
+
+  .nav-right {
+    gap: 14px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+}
+
+/* ================= 1400px (DESKTOP XL) ================ */
+@media (min-width: 1400px) {
+
+  .container {
+    max-width: 1200px;
+  }
+
+  .search-wrapper input {
+    width: 260px;
+  }
+
+  .notification-dropdown {
+    width: 340px;
+  }
 }
