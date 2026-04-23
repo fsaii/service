@@ -1,3 +1,4 @@
+/* ================= ROOT ================= */
 :root {
     --primary: #0b1f44;
     --accent: #2563eb;
@@ -9,8 +10,17 @@
     --shadow: 0 20px 50px rgba(15, 23, 42, .06);
 }
 
-/* ===== TABLE ===== */
+/* ================= BASE ================= */
+body {
+    background: var(--bg);
+    color: var(--text-main);
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* ================= TABLE ================= */
 .table-wrapper {
+    display: none;
+    /* mobile default */
     background: var(--card);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
@@ -24,16 +34,21 @@ table {
 }
 
 thead {
-    background: #e7e9ec;
+    background: #e2e8f0;
+}
+
+thead th {
+    font-weight: 600;
+    color: #1e293b;
 }
 
 th,
 td {
     padding: 16px 18px;
     font-size: 14px;
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid #d6d7d9;
     text-align: center;
-    white-space: nowrap;
+    line-height: 1.6;
 }
 
 tbody tr:hover {
@@ -42,80 +57,72 @@ tbody tr:hover {
 
 td:first-child {
     color: var(--accent);
-    font-weight: 500;
+    font-weight: 600;
 }
 
-th,
-td {
-    padding: 18px 22px;
-    font-size: 14px;
-    border-bottom: 1px solid #e5e7eb;
-    text-align: center;
-    line-height: 1.6;
-    vertical-align: top;
-}
-
+/* column control */
 td:nth-child(2) {
-    min-width: 180px;
-}
-
-td:nth-child(3) {
     min-width: 160px;
 }
 
+td:nth-child(3) {
+    min-width: 150px;
+}
+
 td:nth-child(4) {
+    max-width: 260px;
     white-space: nowrap;
-    max-width: 280px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-
 td:nth-child(7) {
-    min-width: 240px;
+    min-width: 200px;
 }
 
-/* ===== STATUS ===== */
+/* ================= STATUS ================= */
 .status {
+    display: inline-block;
     padding: 6px 12px;
     border-radius: 999px;
-    font-size: 13px;
-    font-weight: 500;
-    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
 }
 
-.completed {
+.status.completed {
     background: #ecfdf5;
     color: #047857;
 }
 
-.pending {
+.status.pending {
     background: #fff7ed;
     color: #c2410c;
 }
 
-.cancelled {
+.status.cancelled {
     background: #fef2f2;
     color: #b91c1c;
 }
 
+.status.assigned {
+    background: #e8f7ef;
+    color: #2e7d32;
+}
+
+/* ================= ACTION ================= */
 .action a {
     font-size: 13px;
     padding: 6px 10px;
     border-radius: 8px;
     color: var(--accent);
+    transition: .2s;
 }
 
 .action a:hover {
     background: #f1f5f9;
 }
 
-.assigned {
-    background: #e8f7ef;
-    color: #2e7d32;
-}
-
-/* ===== MODAL ===== */
+/* ================= MODAL ================= */
 .modal {
     position: fixed;
     inset: 0;
@@ -127,111 +134,60 @@ td:nth-child(7) {
 }
 
 .modal-card {
-    background: #ffffff;
-    padding: 32px;
-    border-radius: 20px;
+    background: #fff;
     width: 100%;
-    max-width: 480px;
+    max-width: 420px;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
 }
 
 .modal-card h3 {
     font-size: 18px;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
 }
 
 .modal-card p {
     font-size: 14px;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
 
 .modal-actions {
     display: flex;
     justify-content: flex-end;
-    gap: 12px;
-    margin-top: 24px;
+    gap: 10px;
+    margin-top: 20px;
 }
 
 .btn-outline {
-    padding: 10px 20px;
+    padding: 10px 16px;
     border-radius: 10px;
     border: 1px solid #e5e7eb;
-    background: #ffffff;
+    background: #fff;
     cursor: pointer;
 }
 
 .btn-primary {
-    padding: 10px 22px;
-    font-size: small;
+    padding: 10px 18px;
     border-radius: 10px;
     background: var(--accent);
-    color: #ffffff;
+    color: #fff;
     border: none;
     cursor: pointer;
 }
 
-/* ===== MOBILE MODE ======= */
-@media (max-width: 768px) {
-    /* ===== TABLE → CARD ===== */
-
-    table,
-    thead,
-    tbody,
-    th,
-    td,
-    tr {
-        display: block;
-        width: 100%;
-    }
-
-    thead {
-        display: none;
-    }
-
-    tbody tr {
-        background: #fff;
-        margin-bottom: 16px;
-        border-radius: 16px;
-        padding: 16px;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, .05);
-    }
-
-    tbody td {
-        border: none;
-        text-align: left;
-        padding: 6px 0;
-        font-size: 14px;
-    }
-
-    tbody td::before {
-        content: attr(data-label);
-        font-weight: 700;
-        font-size: 12px;
-        color: #475569;
-        margin-bottom: 4px;
-    }
-
-    .status {
-        margin-top: 4px;
-    }
-
-    .notification-dropdown {
-        width: 280px;
-        right: -20px;
-    }
-}
-
-/* ======== MOBILE CARD VERSION ============ */
+/* ================= MOBILE CARD ================= */
 .mobile-booking-list {
-    display: none;
+    display: block;
 }
 
 .booking-card {
-    background: #ffffff;
-    border-radius: 20px;
-    padding: 18px;
-    margin-bottom: 18px;
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.06);
-    transition: transform .2s ease;
+    background: #fff;
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 14px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .05);
+    transition: .2s;
 }
 
 .booking-card:hover {
@@ -242,61 +198,48 @@ td:nth-child(7) {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 12px;
 }
 
 .card-id {
     font-weight: 600;
     color: var(--accent);
-    font-size: 15px;
 }
 
 .card-service {
     font-size: 14px;
     font-weight: 500;
-    margin-bottom: 8px;
+    margin: 8px 0;
 }
 
 .card-info {
     font-size: 13px;
     color: var(--text-muted);
-    margin-bottom: 6px;
+    margin-bottom: 4px;
 }
 
 .card-bottom {
-    margin-top: 14px;
-    padding-top: 12px;
+    margin-top: 12px;
+    padding-top: 10px;
     border-top: 1px dashed #e5e7eb;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .card-note {
     font-size: 13px;
-    max-width: 65%;
 }
 
 .card-action a {
-    font-size: 13px;
+    display: inline-block;
     padding: 8px 14px;
     border-radius: 999px;
     background: #eef2ff;
     color: var(--accent);
+    font-size: 13px;
 }
 
-/* ================= BASE (320px) ================= */
-
-/* ใช้ MOBILE CARD เป็น default */
-.table-wrapper {
-    display: none;
-}
-
-.mobile-booking-list {
-    display: block;
-}
-
-/* page layout */
+/* ================= PAGE ================= */
 .container {
     padding: 16px;
 }
@@ -304,53 +247,33 @@ td:nth-child(7) {
 .page-header {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: 12px;
+    margin-bottom: 24px;
 }
 
 .page-header h1 {
     font-size: 22px;
 }
 
-/* card tuning */
-.booking-card {
-    padding: 16px;
-    border-radius: 16px;
+.filters {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
 }
 
-.card-bottom {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-}
+/* ================= RESPONSIVE ================= */
 
-.card-note {
-    max-width: 100%;
-}
-
-/* modal mobile */
-.modal-card {
-    margin: 0 12px;
-    padding: 20px;
-    border-radius: 16px;
-    max-height: 90vh;
-    overflow-y: auto;
-}
-
-/* ================= 360px ================= */
+/* 360px */
 @media (min-width: 360px) {
     .page-header h1 {
         font-size: 24px;
     }
-
-    .booking-card {
-        padding: 18px;
-    }
 }
 
-/* ================= 768px (Tablet) ================= */
+/* 768px (Tablet) */
 @media (min-width: 768px) {
 
-    /* SWITCH → TABLE MODE */
     .table-wrapper {
         display: block;
     }
@@ -358,10 +281,6 @@ td:nth-child(7) {
     .mobile-booking-list {
         display: none;
     }
-
-    /* .container {
-        padding: 24px;
-    } */
 
     .page-header {
         flex-direction: row;
@@ -373,7 +292,6 @@ td:nth-child(7) {
         font-size: 28px;
     }
 
-    /* table improve */
     table {
         min-width: 700px;
     }
@@ -385,17 +303,13 @@ td:nth-child(7) {
     }
 
     .modal-card {
-        max-width: 500px;
+        max-width: 480px;
         padding: 28px;
     }
 }
 
-/* ================= 1024px (Laptop) ================= */
+/* 1024px */
 @media (min-width: 1024px) {
-
-    /* .container {
-        padding: 32px;
-    } */
 
     .page-header h1 {
         font-size: 32px;
@@ -410,20 +324,10 @@ td:nth-child(7) {
         font-size: 14px;
         padding: 18px;
     }
-
-    .modal-card {
-        max-width: 480px;
-        padding: 32px;
-    }
 }
 
-/* ================= 1400px (Large Desktop) ================= */
+/* 1400px */
 @media (min-width: 1400px) {
-
-    /* .container {
-        max-width: 1300px;
-        margin: auto;
-    } */
 
     .page-header h1 {
         font-size: 36px;
@@ -435,7 +339,7 @@ td:nth-child(7) {
 
     th,
     td {
-        padding: 20px 22px;
+        padding: 20px;
     }
 
     .modal-card {

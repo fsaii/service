@@ -1,4 +1,12 @@
  /* ============   AUTH HEADER =============== */
+ function getJSON(key, fallback = null) {
+  try {
+    return JSON.parse(localStorage.getItem(key)) ?? fallback;
+  } catch {
+    return fallback;
+  }
+}
+
  function logout() {
     localStorage.removeItem("isLoggedIn");
 
@@ -32,31 +40,46 @@
     }
 
     navAuth.innerHTML = `
-      <div class="profile">
-        <button class="avatar-btn" onclick="toggleProfile()">
-          <div class="avatar-letter">
-            ${user.name?.charAt(0) || "U"}
-          </div>
-        </button>
-  
-        <div class="profile-menu" id="profileMenu">
-          <div class="profile-info">
-            <strong>${user.name || "-"}</strong>
-            <span>${user.email || "-"}</span>
-          </div>
-          <a href="home.html">หน้าหลัก</a>
-          <a href="myprofile.html">บัญชีของฉัน</a>
-          <a href="servicelist.html">ประเภทการบริการ</a>
-          <a href="booking.html">จองบริการ</a>
-          <a href="history.html">ประวัติการจอง</a>
-          <a href="#" class="logout" onclick="logout()">ออกจากระบบ</a>
+    <div class="profile">
+      <button class="avatar-btn" onclick="toggleProfile()">
+        <div class="avatar-letter">
+          ${user.name?.charAt(0) || "U"}
         </div>
+      </button>
+
+      <div class="profile-menu" id="profileMenu">
+        
+        <!-- HEADER -->
+        <div class="profile-header">
+          <div class="profile-name">${user.name || "-"}</div>
+          <div class="profile-email">${user.email || "-"}</div>
+        </div>
+
+        <!-- MENU -->
+        <a href="home.html">หน้าหลัก</a>
+        <a href="myprofile.html">บัญชีของฉัน</a>
+        <a href="servicelist.html">ประเภทการบริการ</a>
+        <a href="booking.html">จองบริการ</a>
+        <a href="history.html">ประวัติการจอง</a>
+        <a href="#" class="logout" onclick="logout()">ออกจากระบบ</a>
       </div>
-    `;
+    </div>
+  `;
   }
   renderHeader();
 
   window.addEventListener("scroll", () => {
     document.querySelector("header")
       .classList.toggle("scrolled", window.scrollY > 10);
+  });
+
+  document.addEventListener("click", function (e) {
+    const menu = document.getElementById("profileMenu");
+    const avatarBtn = document.querySelector(".avatar-btn");
+  
+    if (!menu || !avatarBtn) return;
+ 
+    if (!menu.contains(e.target) && !avatarBtn.contains(e.target)) {
+      menu.style.display = "none";
+    }
   });

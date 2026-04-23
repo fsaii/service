@@ -70,10 +70,10 @@
       }
     }
 
+    /* ================= PROMO ================= */
     const promoData = JSON.parse(localStorage.getItem("PROMOTIONS") || "[]");
     const grid = document.querySelector(".service-grid");
 
-    /* ================= PROMO ================= */
     function renderPromo() {
       if (typeof PROMOTIONS === "undefined") return;
 
@@ -168,6 +168,7 @@
     grid.innerHTML = "";
     renderPromo();
     renderAdminServices();
+    searchHome();
 
   </script>
 </body>

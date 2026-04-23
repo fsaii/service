@@ -134,6 +134,7 @@
   <script src="/js/user/auth.js"></script>
   <script src="/js/user/search.js"></script>
   <script src="/js/user/notification.js"></script>
+  <script src="/js/user/booking.js"></script>
   <script>
     // โหลด header
     fetch("/components/header.html")
@@ -448,7 +449,6 @@
     function getTotalPrice() {
       const unit = getUnitCount();
 
-      // ใช้ราคาต่ำสุดเป็น base (UX ดีสุด)
       return unit * (service.minPrice || 0);
     }
     const base = (service.minPrice + service.maxPrice) / 2;

@@ -1,204 +1,216 @@
-    :root {
-      --accent: #2563eb;
-      --bg: #f4f6fb;
-      --card: #ffffff;
-    }
+/* ================= ROOT ================= */
+:root {
+  --accent: #2563eb;
+  --accent-dark: #1e40af;
+  --bg: #f4f6fb;
+  --card: #ffffff;
+  --text-main: #0f172a;
+  --text-muted: #6b7280;
+  --radius: 16px;
+  --shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
 
-    /* ===== SERVICE ===== */
-    .service-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-    }
+/* ================= BASE ================= */
+body {
+  background: var(--bg);
+  color: var(--text-main);
+}
 
-    .service-item {
-      background: #fff;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, .08);
-      display: flex;
-      flex-direction: column;
-      position: relative;
-    }
+/* ================= GRID (Mobile First) ================= */
+.service-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
 
-    .service-item img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
+/* ===== SECTION HEADER ===== */
+.section-header {
+  display: flex;
+  flex-direction: column; 
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 20px;
+}
 
-    .badge {
-      position: absolute;
-      top: 16px;
-      left: 16px;
-      padding: 6px 14px;
-      font-size: 12px;
-      border-radius: 999px;
-      font-weight: 600;
-      color: #fff;
-    }
+.section-header h2 {
+  width: 100%;
+  font-size: 30px;
+}
 
-    /* PROMO */
-    .badge.promo {
-      background: #dc2626;
-    }
+/* FILTER */
+.filters {
+  align-self: flex-end; 
+}
 
-    /* STANDARD / PREMIUM */
-    .badge.type {
-      background: #2563eb;
-    }
+/* ================= CARD ================= */
+.service-item {
+  background: var(--card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: 0.25s ease;
+}
 
-    .service-info {
-      padding: 22px;
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-    }
+.service-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+}
 
-    .price {
-      font-size: 20px;
-      font-weight: 700;
-      color: #0b4ed3;
-      margin-bottom: 18px;
-    }
+/* IMAGE */
+.service-item img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
 
-    /* ราคาโปรโมชั่น ใช้แดง */
-    .price.promo {
-      color: #dc2626;
-    }
+/* ================= BADGE ================= */
+.badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  padding: 6px 12px;
+  font-size: 11px;
+  border-radius: 999px;
+  font-weight: 600;
+  color: #fff;
+}
 
-    .service-desc {
-      color: #858585;
-      font-size: 15px;
-      margin-top: 2px;
-      margin-bottom: 2px;
-    }
+.badge.promo {
+  background: #dc2626;
+}
 
-    .price-old {
-      color: #b4bbc7;
-      font-size: 17px;
-      text-decoration: line-through;
-    }
+.badge.type {
+  background: var(--accent);
+}
 
-    .price-new {
-      color: #dc2626;
-      font-weight: 700;
-    }
+/* ================= INFO ================= */
+.service-info {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
 
-    .btn-book {
-      margin-top: auto;
-      padding: 14px;
-      text-align: center;
-      background: #0b5cff;
-      color: #fff;
-      border-radius: 12px;
-      font-weight: 600;
-    }
+/* PRICE */
+.price {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
 
-    :root {
-      --accent: #2563eb;
-      --bg: #f4f6fb;
-      --card: #ffffff;
-    }
-    
-    /* ================= BASE (320px) ================= */
-    .service-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-    }
-    
-    .service-item {
-      border-radius: 16px;
-    }
-    
-    .service-item img {
-      height: 180px;
-    }
-    
-    .service-info {
-      padding: 16px;
-    }
-    
-    .price {
-      font-size: 18px;
-    }
-    
-    .btn-book {
-      padding: 12px;
-      font-size: 14px;
-    }
+.price.promo {
+  color: #dc2626;
+}
 
-    
-    /* ================= 360px ================= */
-    @media (min-width: 360px) {
-      .service-item img {
-        height: 190px;
-      }
-    }
-    
-    /* ================= 768px (Tablet) ================= */
-    @media (min-width: 768px) {
-      .service-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-      }
-    
-      .section-header {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-      }
-    
-      .service-item img {
-        height: 200px;
-      }
-    
-      .service-info {
-        padding: 18px;
-      }
-    
-      .price {
-        font-size: 19px;
-      }
-    }
-    
-    /* ================= 1024px (Laptop) ================= */
-    @media (min-width: 1024px) {
-      .service-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 24px;
-      }
-    
-      .service-item {
-        border-radius: 20px;
-      }
-    
-      .service-info {
-        padding: 20px;
-      }
-    
-      .price {
-        font-size: 20px;
-      }
-    
-      .btn-book {
-        padding: 14px;
-      }
-    }
-    
-    /* ================= 1400px (Large Desktop) ================= */
-    @media (min-width: 1400px) {
-      .service-grid {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 28px;
-      }
-    
-      .service-item img {
-        height: 220px;
-      }
-    
-      .service-info {
-        padding: 22px;
-      }
-    }
+/* OLD PRICE */
+.price-old {
+  font-size: 14px;
+  color: #9ca3af;
+  text-decoration: line-through;
+  margin-right: 6px;
+}
+
+/* NEW PRICE */
+.price-new {
+  font-size: 18px;
+  font-weight: 700;
+  color: #dc2626;
+}
+
+/* DESCRIPTION */
+.service-desc {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+/* ================= BUTTON ================= */
+.btn-book {
+  margin-top: auto;
+  padding: 12px;
+  text-align: center;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.btn-book:hover {
+  background: var(--accent-dark);
+  transform: translateY(-1px);
+}
+
+.btn-book:active {
+  transform: scale(0.98);
+}
+
+/* ================= RESPONSIVE ================= */
+
+/* ===== 360px ===== */
+@media (min-width: 360px) {
+  .service-item img {
+    height: 190px;
+  }
+}
+
+/* ===== 768px (Tablet) ===== */
+@media (min-width: 768px) {
+  .service-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .service-item img {
+    height: 200px;
+  }
+
+  .service-info {
+    padding: 18px;
+  }
+
+  .price {
+    font-size: 19px;
+  }
+}
+
+/* ===== 1024px (Laptop) ===== */
+@media (min-width: 1024px) {
+  .service-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .service-info {
+    padding: 20px;
+  }
+
+  .price {
+    font-size: 20px;
+  }
+
+  .btn-book {
+    padding: 14px;
+  }
+}
+
+/* ===== 1400px (Large Desktop) ===== */
+@media (min-width: 1400px) {
+  .service-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+  }
+
+  .service-item img {
+    height: 220px;
+  }
+
+  .service-info {
+    padding: 22px;
+  }
+}
