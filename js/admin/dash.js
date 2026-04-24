@@ -193,6 +193,7 @@ function toggleSearch() {
     input.focus();
 }
 
+// SEARCH Desktop
 function searchDashboard() {
     const keyword =
         document.getElementById("searchInput").value.toLowerCase();
@@ -213,6 +214,40 @@ function searchDashboard() {
 
     renderDashboardRequests(filtered);
 }
+
+// SEARCH Mobile
+function searchDashboardMobile() {
+    const keyword =
+        document.getElementById("searchMobileInput").value.toLowerCase();
+
+    currentKeyword = keyword;
+
+    const bookings =
+        JSON.parse(localStorage.getItem("bookings")) || [];
+
+    const filtered = bookings.filter(b =>
+        (b.name || "").toLowerCase().includes(keyword) ||
+        (b.phone || "").toLowerCase().includes(keyword) ||
+        (b.location || "").toLowerCase().includes(keyword) ||
+        (b.status || "").toLowerCase().includes(keyword) ||
+        (b.serviceType || "").toLowerCase().includes(keyword) ||
+        (b.serviceName || "").toLowerCase().includes(keyword)
+    );
+
+    renderDashboardRequests(filtered);
+}
+
+document.getElementById("searchMobileInput").addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+        e.preventDefault();
+
+        // trigger search อีกรอบ (กันกรณี user ยังไม่ปล่อย key)
+        searchDashboardMobile();
+
+        // ปิด overlay
+        closeSearchOverlay();
+    }
+});
 
 document.addEventListener("keydown", function (e) {
     if (e.key === "Escape") {
@@ -236,6 +271,14 @@ function openSearch() {
 }
 
 function closeSearchOverlay() {
+    const mobileInput = document.getElementById("searchMobileInput");
+    const desktopInput = document.getElementById("searchInput");
+
+    // sync keyword ไป desktop
+    if (desktopInput && mobileInput) {
+        desktopInput.value = mobileInput.value;
+    }
+
     document.getElementById("searchOverlay").classList.remove("show");
 }
 

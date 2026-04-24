@@ -190,10 +190,11 @@ function toggleSearch() {
 }
 
 function searchServiceTable() {
-    const keyword = document
-        .getElementById("searchInput")
-        .value
-        .toLowerCase();
+    const desktopInput = document.getElementById("searchInput");
+    const mobileInput = document.getElementById("searchMobileInput");
+
+    const keyword =
+        (desktopInput?.value || mobileInput?.value || "").toLowerCase();
 
     currentServiceKeyword = keyword;
 
@@ -210,6 +211,7 @@ function searchServiceTable() {
         );
 
     renderFilteredTable(filtered);
+    renderMobile(filtered);
 }
 
 function renderFilteredTable(data) {
@@ -243,13 +245,47 @@ function renderFilteredTable(data) {
     });
 }
 
-document.getElementById("searchInput").addEventListener("input", searchServiceTable);
+document.getElementById("searchInput")?.addEventListener("input", searchServiceTable);
+document.getElementById("searchMobileInput")?.addEventListener("input", searchServiceTable);
 document.addEventListener("keydown", function (e) {
+    const desktopInput = document.getElementById("searchInput");
+    const mobileInput = document.getElementById("searchMobileInput");
+
+    // ===== ENTER =====
+    if (e.key === "Enter") {
+        if (document.activeElement === mobileInput) {
+            searchServiceTable();
+            closeSearchOverlay(); 
+            mobileInput.blur();
+        }
+
+        if (document.activeElement === desktopInput) {
+            searchServiceTable();
+            desktopInput.blur();
+        }
+    }
+
+    // ===== ESC =====
     if (e.key === "Escape") {
-        const input = document.getElementById("serviceSearchInput");
-        input.classList.remove("show");
-        input.value = "";
-        searchServiceTable();
+
+        // clear input
+        if (desktopInput) {
+            desktopInput.value = "";
+            desktopInput.classList.remove("show");
+        }
+
+        if (mobileInput) {
+            mobileInput.value = "";
+        }
+
+        // reset keyword
+        currentServiceKeyword = "";
+
+        // reset table
+        renderTable();
+
+        // ปิด overlay
+        closeSearchOverlay();
     }
 });
 

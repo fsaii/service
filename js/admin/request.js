@@ -191,8 +191,11 @@ function toggleSearch() {
 }
 
 function searchDashboard() {
+    const desktopInput = document.getElementById("searchInput");
+    const mobileInput = document.getElementById("searchDashboardMobileInput");
+
     const keyword =
-        document.getElementById("searchInput").value.toLowerCase();
+        (desktopInput?.value || mobileInput?.value || "").toLowerCase();
 
     currentKeyword = keyword;
 
@@ -201,29 +204,61 @@ function searchDashboard() {
     );
 }
 
-document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") {
-        const input = document.getElementById("searchInput");
+document.addEventListener("DOMContentLoaded", () => {
+    const desktopInput = document.getElementById("searchInput");
+    const mobileInput = document.getElementById("searchDashboardMobileInput");
 
-        input.classList.remove("show");
-        input.value = "";
-        currentKeyword = "";
+    // ===== realtime search =====
+    desktopInput?.addEventListener("input", searchDashboard);
+    mobileInput?.addEventListener("input", searchDashboard);
 
-        render(
-            document.querySelector(".filter-btn.active")?.dataset.status || "all"
-        );
-    }
-});
+    document.addEventListener("keydown", function (e) {
 
-document.addEventListener("keydown", function (e) {
-    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "f") {
-        e.preventDefault(); // ปิด browser search
+        // ENTER
+        if (e.key === "Enter") {
+            if (
+                document.activeElement === desktopInput ||
+                document.activeElement === mobileInput
+            ) {
+                searchDashboard();
 
-        const input = document.getElementById("searchInput");
-        input.classList.add("show");
-        input.focus();
-        input.select();
-    }
+                // ปิด overlay (mobile)
+                closeSearchOverlay();
+
+                // ปิด input (desktop)
+                desktopInput?.classList.remove("show");
+
+                // optional: blur เอา focus ออก
+                document.activeElement.blur();
+            }
+        }
+
+        // ESC
+        if (e.key === "Escape") {
+            if (desktopInput) {
+                desktopInput.value = "";
+                desktopInput.classList.remove("show");
+            }
+            if (mobileInput) {
+                mobileInput.value = "";
+            }
+
+            currentKeyword = "";
+
+            render(
+                document.querySelector(".filter-btn.active")?.dataset.status || "all"
+            );
+        }
+
+        // CTRL + F
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "f") {
+            e.preventDefault();
+
+            desktopInput?.classList.add("show");
+            desktopInput?.focus();
+            desktopInput?.select();
+        }
+    });
 });
 
 function openSearch() {
@@ -231,9 +266,9 @@ function openSearch() {
 
     if (isMobile) {
         document.getElementById("searchOverlay").classList.add("show");
-        document.getElementById("searchMobileInput").focus();
+        document.getElementById("searchDashboardMobileInput").focus();
     } else {
-        toggleSearch(); // desktop ใช้ของเดิม
+        toggleSearch();
     }
 }
 

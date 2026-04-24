@@ -55,7 +55,7 @@
           </div>
           <div class="top-nav-right">
             <div class="search-wrapper">
-              <input type="text" id="searchInput" placeholder="ค้นหา" />
+              <input type="text" id="searchInput" placeholder="ค้นหา" oninput="searchDashboard()" />
               <button class="icon-btn" onclick="openSearch()">
                 <i class="ri-search-line"></i>
               </button>
@@ -158,7 +158,7 @@
     <div class="search-panel">
       <div class="search-header">
         <i class="ri-search-line"></i>
-        <input type="text" id="searchMobileInput" placeholder="ค้นหา..." oninput="searchDashboardMobile()">
+        <input type="text" id="searchDashboardMobileInput" placeholder="ค้นหา..." oninput="searchDashboard()" />
         <button onclick="closeSearchOverlay()">✕</button>
       </div>
 

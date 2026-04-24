@@ -107,6 +107,9 @@
             tr.dataset.cancelType = b.cancelType || "";
             tr.dataset.bookedTime = b.bookedTime;
 
+            tr.dataset.name = b.name || "";
+            tr.dataset.phone = b.phone || "";
+
             tr.innerHTML = `
                 <td data-label="รหัสการจอง"> #${b.id} </td>
 
@@ -446,6 +449,8 @@
                 card.className = "booking-card";
                 card.dataset.status = b.status;
                 card.dataset.cancelType = b.cancelType || "";
+                card.dataset.name = b.name || "";
+                card.dataset.phone = b.phone || "";
 
                 let statusText = "";
                 if (b.status === "pending") statusText = "รอดำเนินการ";

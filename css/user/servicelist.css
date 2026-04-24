@@ -26,7 +26,7 @@ body {
 /* ===== SECTION HEADER ===== */
 .section-header {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   align-items: flex-start;
   gap: 12px;
   margin-bottom: 20px;
@@ -39,7 +39,53 @@ body {
 
 /* FILTER */
 .filters {
-  align-self: flex-end; 
+  align-self: flex-end;
+}
+
+/* ===== FILTER WRAPPER ===== */
+.filters {
+  display: inline-flex;
+  background: #ffffff;
+  padding: 6px;
+  border-radius: 999px;
+  gap: 6px;
+
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+/* ===== BUTTON ===== */
+.filter {
+  border: none;
+  background: transparent;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #2563eb;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+/* ===== ACTIVE ===== */
+.filter.active {
+  background: #1357eb;
+  color: #fff;
+}
+
+/* ===== HOVER ===== */
+.filter:not(.active):hover {
+  background: rgba(37, 99, 235, 0.1);
+}
+
+/* ===== MOBILE SCROLL ===== */
+.filters {
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.filters::-webkit-scrollbar {
+  display: none;
 }
 
 /* ================= CARD ================= */
@@ -154,13 +200,40 @@ body {
 
 /* ===== 360px ===== */
 @media (min-width: 360px) {
+
+  .filter {
+    display: flex;
+    padding: 5px 15px;
+    font-size: 13px;
+  }
+
   .service-item img {
     height: 190px;
   }
 }
 
+/* ===== SMALL MOBILE ===== */
+@media (max-width: 480px) {
+  .filters {
+    display: flex;
+    padding: 4px;
+    gap: 4px;
+  }
+
+  .filter {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+}
+
+
 /* ===== 768px (Tablet) ===== */
 @media (min-width: 768px) {
+
+  .filter{
+    font-size: medium;
+    font-weight: 400;
+  }
   .service-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
